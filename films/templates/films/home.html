@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="{% static 'films/css/Header.css' %}">
+    <link rel="stylesheet" href="{% static 'films/css/home.css' %}">
+</head>
+<body>
+    <header class="header-1">
+        <h1>Rezkapoisk</h1>
+        <div class="header-div-1">
+            <form method="POST" action="{% url 'films:film-search'  %}" class="form_1">
+                {% csrf_token %}
+                <input type="search" placeholder="Поиск по фильмам" name="search">
+                <button id="button-find">
+                    Search
+                </button>
+            </form> 
+        </div>
+
+        <div class="header-div-2">
+            {% if request.user.is_authenticated %}
+            <a href="{% url 'authe:signout' %}" class="button-reg">Signout</a>  
+                {% if user.image %}
+                    <a href="{% url 'authe:profile' %}"><img src="{{ user.image.url }}" alt="" id="header-img"></a>
+                {% else %}
+                    <a href="{% url 'authe:profile' %}" class="button-reg"><img src="{% static 'decode_blogs/images/User.png' %}" alt="">Profile</a>
+                {% endif %}
+            {% else %}
+                <a href="{% url 'authe:signin' %}" class="button-reg">SignIn</a>
+                <a href="{% url 'authe:signup' %}" class="button-reg">SignUp</a>
+            {% endif %}
+        </div>
+
+    </header>
+    <hr>
+
+    <section class="main">
+        <div class="films">
+            {% for f in films %}
+                {% if f.poster %}
+                    <img src="{{ f.poster.url }}" alt="" id="film-img">
+                {% endif %}
+                <hr>
+                <div class="description">
+                    <span>{{f.title_ru}};</span>
+                    <span>{{f.timing}} мин</span>
+                    <br>
+                    <a href="{% url 'films:genres' f.genre_id %}">{{f.genre}}</a>
+                    <br>
+                    <span>{{f.country}};</span>
+                    <span>{{f.prod_year}}</span>
+                    <br><a href="{% url 'films:filmsl' f.id f.title_ru %}">Понравилось</a>
+                </div>
+                <hr>
+            {% endfor %} 
+        </div>
+
+    <div class="genres">
+        <h2 id="genres-name">Категории</h2>
+        {% if genre_id == 0 %}
+            <a href="{% url 'films:home' %}" class="selected-genre"></a>
+        {% else %}
+            <a href="{% url 'films:home' %}">Все Фильмы</a>
+        {% endif %}
+    
+        {% for g in genres %}
+            {% if genre_id == g.id %}
+                <a href="{% url 'films:genres' g.id %}" class="selected-genre">{{g.name}}</a>
+            {% else %}
+                <a href="{% url 'films:genres' g.id %}">{{g.name}}</a>
+            {% endif %}
+        {% endfor %}   
+    </div>
+    </section>
+
+</body>
+</html>

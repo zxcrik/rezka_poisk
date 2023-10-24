@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit profile</title>
+    <link rel="stylesheet" href="{% static 'authe/css/header.css' %}">
+    <link rel="stylesheet" href="{% static 'authe/css/authe.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Rezkapoisk</h1>
+        <div class="header-div-1">
+            <form method="POST" action="{% url 'films:film-search'  %}" class="form">
+                {% csrf_token %}
+                <input type="search" placeholder="Поиск по блогам" name="search">
+                <button id="button-find">
+                    Search
+                </button> 
+            </form> 
+        </div>
+
+        <div class="header-div-2">
+            <a href="{% url 'films:home' %}" class="button-reg">Home</a>
+            <a href="{% url 'authe:signout' %}" class="button-reg">Signout</a>
+            {% if user.image %}
+                <a href="{% url 'authe:profile'%}"><img src="{{ user.image.url }}" alt="" id="header-img"></a>
+            {% else %}
+                <a href="{% url 'authe:profile'%}"><img src="{% static 'films/images/User.png' %}" alt=""></a>
+            {% endif %}
+        </div>
+    </header>
+    <hr id="hr-line">
+
+    <section class="authe-main">
+        <h1>Редактирование профиля</h1>
+        <form method="post" class="authe-form" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Сохранить</button>
+        </form>
+    </section>
+</body>
+</html>  

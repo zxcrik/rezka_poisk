@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Авторизация</title>
+    <link rel="stylesheet" href="{% static 'authe/css/authe.css' %}">
+    <link rel="stylesheet" href="{% static 'authe/css/header.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Decode Blog</h1>
+        <div class="header-div-1">
+            <form method="POST" action="{% url 'films:film-search'  %}" class="form">
+                {% csrf_token %}
+                <input type="search" placeholder="Поиск по блогам" name="search">
+                <button id="button-find">
+                    Search
+                </button>
+            </form> 
+        </div>
+
+
+        <div class="header-div-2">
+            <a href="{% url 'films:home' %}" class="button-reg">Home</a>
+            <a href="{% url 'authe:signup' %}" class="button-reg">SignUp</a>    
+        </div>
+    </header>
+    <hr id="hr-line">
+
+
+    <section class="authe-main">
+        <h1>Авторизация</h1>
+
+        <form action="" method="POST" class="authe-form">
+            {% csrf_token %}
+            
+            {{ form.as_p }}
+            
+            <button type="submit">Зарегистрироваться</button>
+        </form>
+    </section>
+</body>
+</html>
+

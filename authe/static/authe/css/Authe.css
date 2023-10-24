@@ -1,0 +1,230 @@
+@import url('https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&family=Roboto+Condensed&display=swap');
+
+* {
+    margin:  0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.main {
+    display: flex;
+    padding: 50px 8%;
+    justify-content: space-between;
+    box-sizing: border-box;
+    position: relative;
+    height: 650px;
+    width: 1000px;
+}
+
+.main-info {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+
+.com-blog {
+    display: block;
+    justify-content: left;
+    align-items: left;
+} 
+
+.blog-change {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 15px;
+    gap: 20px;
+}
+
+.blog-name {  
+    gap: 20px;
+}
+
+#description {
+    margin-top: 20px;
+}
+
+#blog-date, #blog-category{
+    display: inline-block;
+    margin-top: 15px;
+}
+
+#blog-category {
+    margin-left: 10px;
+}
+
+.comment-img {
+    margin-top: 20px;
+    width: 500px;
+    height: 400px;
+}
+
+#blogs-comments {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+
+.authe-main {
+    min-height: calc(60vh - 80px);  
+    display: flex;  
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.authe-main h1 {
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.authe-form {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+}
+
+.authe-form p {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.authe-form p label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.authe-form p input,
+.authe-form p textarea,
+.authe-form p select {
+    padding: 5px;
+    box-sizing: border-box;
+    outline: none;
+    font-size: 14px;
+}
+
+.authe-form p textarea {
+    resize: none;
+}
+
+.authe-form button {
+    padding: 5px;
+    box-sizing: border-box;
+    color: yellow;
+    border: 5px solid yellow;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    background-color: rgb(23, 23, 218);
+}
+
+.authe-form .helptext,
+.authe-form > ul {
+    display: none;
+}
+
+.blog-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 25px;
+    border-radius: 7%;
+    background-color: rgb(69,69,247);
+    color: white;
+    height: 45px;
+    width: 200px;
+}
+
+
+.profile-img {
+    width: 100px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    margin-left: 20px;
+}
+
+
+
+
+.profile-main {
+    position: absolute; 
+    top: 150px; 
+    right: 15px; 
+    margin-right: 40px; 
+    justify-content: center;
+    align-items: center;
+}
+
+
+.profile-main h1 {
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.profile-form {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-form p {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.profile-form p label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.profile-form p input,
+.profile-form p textarea,
+.profile-form p select {
+    padding: 5px;
+    box-sizing: border-box;
+    outline: none;
+    font-size: 14px;
+}
+
+.profile-form p textarea {
+    resize: none;
+}
+
+.profile-form button {
+    padding: 5px;
+    box-sizing: border-box;
+    color: yellow;
+    border: 5px solid yellow;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    background-color: rgb(23, 23, 218);
+}
+
+.profile-form .helptext,
+.profile-form > ul {
+    display: none;
+}
+
+.blog-review {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+}
+
+.film-img{
+    margin-top: 5px;
+    width: 350px;
+    height: 350px;
+}

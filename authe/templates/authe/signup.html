@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="{% static 'authe/css/header.css' %}">
+    <link rel="stylesheet" href="{% static 'authe/css/authe.css' %}">
+</head>
+<body>
+    <header class="header-1">
+        <h1>Rezkapoisk</h1>
+        <div class="header-div-1">
+            <form method="POST" action="{% url 'films:film-search'  %}" class="form_1">
+                {% csrf_token %}
+                <input type="search" placeholder="Поиск по фильмам" name="search">
+                <button id="button-find">
+                    Search
+                </button>
+            </form> 
+        </div>
+    </header>
+    <hr>
+
+
+<section class="authe-main">
+    <h1>Регистрация</h1>
+    <form action="" method="POST" class="authe-form" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Зарегистрироваться</button>
+    </form>
+</section>
+</body>
+</html>

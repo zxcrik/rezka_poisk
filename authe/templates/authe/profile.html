@@ -1,0 +1,101 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль</title>
+    <link rel="stylesheet" href="{% static 'authe/css/authe.css' %}">
+    <link rel="stylesheet" href="{% static 'authe/css/Header.css' %}">
+
+</head>
+<body>
+    <header>
+        <h1>Decode Blog</h1>
+        <div class="header-div-1">
+            <form method="POST" action="{% url 'films:film-search'  %}" class="form">
+                {% csrf_token %}
+                <input type="search" placeholder="Поиск по блогам" name="search">
+                <button id="button-find">
+                    Search
+                </button>
+            </form> 
+        </div>
+
+        <div class="header-div-2">
+            <a href="{% url 'films:home' %}" class="button-reg">Home</a>
+            <a href="{% url 'authe:signout' %}" class="button-reg">Signout</a>
+            {% if user.image %}
+                <a href="{% url 'authe:profile'%}"><img src="{{ user.image.url }}" alt="" id="header-img"></a>
+            {% else %}
+                <a href="{% url 'authe:profile'%}"><img src="{% static 'films/images/User.png' %}" alt=""></a>
+            {% endif %}
+        </div>
+    </header>
+    <hr id="hr-line">
+    
+    <section class="main">
+        <div class="com-blog">
+            {% for f in user_liked_films %}
+            <div class="main-info"> 
+                {% if f.poster %}
+                    <img src="{{ f.poster.url }}" alt="comment-img" class="film-img">
+                {% endif %}
+            </div>
+            <hr>
+            <h4 class="blog-name">{{ f.title_ru }}</h4>
+            <h4 class="blog-name">{{ f.title_orig }}</h4>
+            <h4>{{ f.timing }} мин</h4>
+            <h4>{{ f.country }}</h4>
+            <h4>{{ f.director }}</h4>
+            <h4><time class="blog-name">{{ f.prod_year }} год</time></h4>
+            <hr>
+
+            <div class="blog-change">
+                {% if request.user.is_staff %}
+                    <a href="{% url 'films:delete' f.id %}" class="blog-button">Удалить фильм</a>
+                    <a href="{% url 'films:edit' f.id  %}" class="blog-button">Изменить Фильм</a>
+                {% endif %}
+                <a href="{% url 'films:films_remove' f.id  f.title_ru %}" class="blog-button">удалить из понравившихся</a>
+            </div>
+            <hr>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="profile-main">
+        <span>
+            {% if user.image %}
+            <img src="{{ user.image.url }}" alt="" class="profile-img">
+            {% else %}
+                <img src="{% static 'decode_blogs/images/User.png' %}" alt=""></a>
+            {% endif %}
+        </span>
+        <div class="profile-info">
+            <p>
+                <span>{{ user.username }}</span>
+            </p>
+
+            <p>
+                <span>{{ user.first_name }}</span>
+            </p>
+
+            <p>
+                <span>{{ user.last_name }}</span>
+            </p>
+
+            <p>
+                <span>{{ user.email }}</span>
+            </p>
+        </div>
+
+        {% if request.user.is_authenticated %}
+            <div class="admin-links">
+                <a href="{% url 'authe:edit-profile' %}" class="blog-button">Редактировать профиль</a>      
+                <a href="{% url 'films:add' %}" class="blog-button"> Добавить новый фильм</a>
+            </div>
+        {% endif %}
+    </section>
+</body>
+</html>
+
